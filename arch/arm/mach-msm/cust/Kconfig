@@ -1,0 +1,477 @@
+if CUST_PANTECH_H
+
+#
+# CUST PANTECH CONFIG SECTION
+#
+menu "CUST PANTECH CONFIG SECTION"
+
+config PANTECH
+	bool "PANTECH Common Configuration"
+	default y
+	select PANTECH_ERR_CRASH_LOGGING
+	select PANTECH_PMIC_PWRKEY
+# (+) p15060, 2012-05-17
+	select INPUT_KEYCHORD
+# (-) p15060, 2012-05-17
+	help
+		Support PANTECH
+
+#config PANTECH_VERIZON
+#	depends on
+#	bool
+#	default y
+#	help
+#		Pantech Verizon Configuration
+#config PANTECH_ATNT
+#	depends on
+#	bool
+#	default y
+#	help
+#		Pantech ATNT Configuration
+#config PANTECH_JAPAN
+#	depends on
+#	bool
+#	default y
+#	help
+#		Pantech Japan Configuration
+
+config PANTECH_DOMESTIC
+	depends on (MACH_APQ8064_EF48S || MACH_APQ8064_EF49K || MACH_APQ8064_50L || MACH_APQ8064_EF51S || MACH_APQ8064_51L)
+	bool
+	default y
+	help
+		Pantech Domestic Configuration
+
+config SKY
+	depends on PANTECH_DOMESTIC
+	bool "SKY Common Configuration"
+	default y
+	help
+		Support SKY
+
+config SKY_EF48S_BOARD
+	depends on MACH_APQ8064_EF48S
+	bool "SKY_EF48S_BOARD Configuration"
+	default y
+	select SKY_SND_FAB2210
+	select SKY_SND_MICB2_2700
+	select SKY_SND_MBHC_GPIO
+	select SKY_SND_AUTOANSWER
+	select KSKY_RAWDATA
+	select SKY_SND_MODIFIER
+	select NLS_UTF8
+	help
+		Support EF48S Board
+
+config SKY_EF49K_BOARD
+	depends on MACH_APQ8064_EF49K
+	bool "SKY_EF49K_BOARD Configuration"
+	default y
+	select SKY_SND_FAB2210
+	select SKY_SND_MICB2_2700
+	select SKY_SND_MBHC_GPIO
+	select SKY_SND_AUTOANSWER
+	select KSKY_RAWDATA
+	select SKY_SND_MODIFIER
+	select NLS_UTF8
+	help
+		Support EF49K Board
+
+config SKY_EF50L_BOARD
+	depends on MACH_APQ8064_EF50L
+	bool "SKY_EF50L_BOARD Configuration"
+	default y
+	select SKY_SND_FAB2210
+	select SKY_SND_MICB2_2700
+	select SKY_SND_MBHC_GPIO
+	select SKY_SND_AUTOANSWER
+	select KSKY_RAWDATA
+	select SKY_SND_MODIFIER
+	select NLS_UTF8
+	help
+		Support EF50L Board
+
+config SKY_EF51S_BOARD
+	depends on MACH_APQ8064_EF51S
+	bool "SKY_EF51S_BOARD Configuration"
+	default y
+	select SKY_SND_FAB2210
+	select SKY_SND_MICB2_2700
+	select SKY_SND_MBHC_GPIO
+	select SKY_SND_AUTOANSWER
+	select KSKY_RAWDATA
+	select SKY_SND_MODIFIER
+	select NLS_UTF8
+	select SKY_SND_QSOUND_OPEN_DSP
+	select SKY_SND_DOCKING_CRADLE
+	help
+		Support EF51S Board
+
+config SKY_EF51L_BOARD
+	depends on MACH_APQ8064_EF51L
+	bool "SKY_EF51L_BOARD Configuration"
+	default y
+	select SKY_SND_FAB2210
+	select SKY_SND_MICB2_2700
+	select SKY_SND_MBHC_GPIO
+	select SKY_SND_AUTOANSWER
+	select KSKY_RAWDATA
+	select SKY_SND_MODIFIER
+	select NLS_UTF8
+	select SKY_SND_QSOUND_OPEN_DSP
+	select SKY_SND_DOCKING_CRADLE
+	help
+		Support EF51L Board
+
+config EV10
+	int "Pantech Board Version EV10 Value"
+	default 0
+
+config PT10
+	int "Pantech Board Version PT10 Value"
+	default 10
+
+config PT20
+	int "Pantech Board Version PT20 Value"
+	default 12
+
+config WS10
+	int "Pantech Board Version WS10 Value"
+	default 20
+
+config WS20
+	int "Pantech Board Version WS20 Value"
+	default 22
+
+config ES10
+	int "Pantech Board Version ES10 Value"
+	default 30
+
+config ES20
+	int "Pantech Board Version ES20 Value"
+	default 32
+
+config TP10
+	int "Pantech Board Version TP10 Value"
+	default 40
+
+config TP20
+	int "Pantech Board Version TP20 Value"
+	default 42
+
+config TP25
+	int "Pantech Board Version TP25 Value"
+	default 43
+
+config TP30
+	int "Pantech Board Version TP30 Value"
+	default 44
+
+config BOARD_VER
+	int "Pantech Board Version Build Target"
+	default 0
+        help
+          The BOARD_VER is your build target's board version.
+
+config PANTECH_GSBI5_UART_CONSOLE
+	bool "Pantech GSBI5 Uart Configuration"
+	default y
+	help
+		Support GSBI5 UART Console
+
+config SKY_SND_FAB2210
+	bool
+
+config SKY_SND_MODIFIER
+	bool
+
+config SKY_SND_DOCKING_CRADLE
+	bool
+
+config SKY_SND_QSOUND_OPEN_DSP
+	bool
+
+config SKY_SND_MICB2_2700
+	bool
+
+config SKY_SND_MBHC_GPIO
+	bool
+
+config SKY_SND_AUTOANSWER
+	bool
+
+config PANTECH_SMB347_CHARGER
+        bool "Pantech SMB347 charger Configuration"
+        default y
+        depends on I2C
+        help
+          The smb347 charger chip from summit is a switching mode based
+          charging solution.
+
+config PANTECH_MAX17058_FG
+ 	bool "Maxim MAX17058 Fuel Gauge"
+	default y
+        depends on I2C
+        help
+          MAX17058 is fuel-gauge systems for lithium-ion (Li+) batteries
+          in handheld and portable equipment. The MAX17058 is configured
+          to operate with a single lithium cell
+
+config PANTECH_BMS_TEST
+	bool "Pantech BMS Test"
+	default y
+	depends on PANTECH_MAX17058_FG
+	help
+	  PANTECH BSM TEST
+
+config PANTECH_ANDROID_USB
+  tristate "pantech function drivers"
+  default y
+  help
+    Say "y" to link the driver statically, or "m" to build
+    as a part of "g_android"
+
+config PANTECH_ANDROID_OTG
+  tristate "support OTG Functionality"
+  default y
+  help
+    Say "y" to link the driver statically, or "m" to build
+    as a part of "g_android"
+    
+config PANTECH_ANDROID_MTP
+  tristate "support USB MTP Functionality"
+  default y
+  help
+    Say "y" to link the driver statically, or "m" to build
+    as a part of "g_android"
+
+config PANTECH_ANDROID_OBEX
+  tristate "support USB OBEX Functionality"
+  default y
+  help
+    Say "y" to link the driver statically, or "m" to build
+    as a part of "g_android"
+
+config PANTECH_ANDROID_FACTORY_MODE
+  bool
+  default y
+  help
+    Support Pantech factory mode.    
+
+config PANTECH_FACTORY_COMMAND
+  bool "Pantech Factory Command"
+  default y
+  help
+    Support Pantech factory test command. We use the "FEATURE_PANTECH_FACTORY_COMMAND" feature in System area. There is in "vendor/pantech/build/cust_pantech.h". 
+    
+# LCD Module Reset ##1199 Test Menu
+# KERNEL : used     
+# USER   : used
+config F_SKYDISP_LCD_RESET
+  bool 
+  default y
+
+# Fuction added : LCD on/off at sleep state.
+# KERNEL : used     
+# USER   : used
+config F_SKYDISP_LCD_FORCE_ONOFF
+	bool     
+	default y
+
+# 2012.05.23, kkcho
+# Macro for  CABC_CTRL on Sharp-LCD
+# KERNEL : used     
+# USER   :   used
+config F_SKYDISP_CABC_CTRL
+	bool     
+	default y
+
+# 2012.05.23, kkcho
+# Macro for  CABC_Tunning on Sharp-LCD
+# KERNEL : used     
+# USER   :   used
+# This macro will enable the LCD_tuning only.
+# M1 : by LCDtestmenu in the #####
+# M2 : by adb shell command
+config F_SKYDISP_CE_TUNING_M1
+	bool     
+	default y		
+
+config F_SKYDISP_CE_TUNING_M2
+	bool     
+	default y	
+
+# Boot without LCD ON when abnormal reset without LCD ON.
+# In Short, Boot secretly.
+# Also, In LK, silent boot is implemented. See define DISPLAY_SILENT_BOOT in LK.
+config F_SKYDISP_SILENT_BOOT
+	bool     
+	default y
+
+# Offline charging need a dark-brightness backlight for low power consumption.
+# When offline charging, change bl table and then, can set very low backlight brightness. 
+config F_SKYDISP_CHANGE_BL_TABLE_WHEN_OFFLINE_CHARGING
+	bool     
+	default y
+
+# Fix downscale bug.
+config F_QUALCOMM_BUG_FIX_LCD_MDP_DOWNSCALING_BUG
+	bool     
+	default y
+
+# 20120515, kkcho, HDMI clock_set diasble for FUSION3
+#   Bug :   or reset during boot (refer to clock_dss_8960.c  hdmi_pll_enable hang)
+#   hdmi block disable at power_up. But don't disable hdmi_donfing in defconfg for WFD fuction
+config F_SKYDISP_DISABLE_DTV_HDMI_CLK_MDP
+	bool     
+	default y
+
+# 20120607, kkcho, for High-resolution Movie-play
+#   Bug : blue-screen occured at rotation during the 1080p play.
+#   Cause : Qualcomm mdp bug (already occrred in 8960)
+#   Fix  : changed old-version.
+#   Relevant macro : FEATURE_ROHM_DUMMY_SCAN_OFF in mipi_rohm.c
+#   20120821, kkcho, macro disable : blt-mode does not use anymore. Thus this macro is not valid
+#config F_SKYDISP_QUALCOMM_ERROR_FIX
+#	bool     
+#	default y
+
+# 20120718, kkcho, MDP IOMMU page fault.
+#   Bug : Bluesceen/Reset occured at next-key during Movie-play.
+#   Cause : Qualcomm mdp-iommu bug (already occrred in 8960)
+#   Fix  : IOMMU patch (case#00910199) + green-line display patch (case#890365, case#894589, in 8960) 
+#   Relevant macro or source : mdp4_overaly.c, hwcomposer.cpp, overlayLib.cpp, overlayLib.h
+#config F_SKYDISP_QUALCOMM_MDP_IOMMU_ERROR_FIX
+#	bool     
+#	default y
+	
+# 20120801, kkcho, overlay minor issue
+# KERNEL : used     
+# USER   :   used
+# Bug : [EF49K PLM1340]back camera -> camcoder -> landscape mode -> menu -> effect select -> color change occured at popup-menu.
+# Cause : Qualcomm alpablending bug. (already occrred in 8960)
+# Fix  : IOMMU patch (case#00814954 in 8960) 
+# Relevant macro or source : External_display_only.h, Hwcomposer.cpp, mdp4_overlayc, overlayLib.cpp, overlayLibUI.cpp, overlayLibUI.h
+# 20120808, kkcho, disable due to side effect : scrach during camer-preview
+# config F_SKYDISP_QUALCOMM_OVERLAY_BLINK_ERROR_FIX
+#	bool     
+#	default y
+
+# 20120818, kkcho, apply genlock-patch form Qualcomm
+#   Bug : reset from gralloc.msm8960.so (segv.mapper fault_address) : EF48S2070, EF49K1767, EF49K1821
+#   Relevant macro or source : hardware/qcom/display/libgenlock/genlock.cpp
+config F_SKYDISP_QUALCOMM_GENLOCK_PATCH
+	bool     
+	default y
+
+# 20120819, kkcho, LCD_DEVICE_SHUTDOWN
+#   Bug :Apply power_seq at the power-off animation.
+#   Relevant macro or source : mipi_rohm.c, board-8064-diaplay.c, kernel/kernel/sys.c
+config F_SKYDISP_LCD_SHUTDOWN
+	bool     
+	default y	
+
+# 20120830, kkcho, apply escape code for MDP4 WAITING
+#   Bug : Yes, no known bugs
+#   Relevant macro or source : mdp4_overlay_dsi_video.c mdp4.h
+config F_ESCAPE_CODE_FOR_MDP4_WAITING
+	bool     
+	default y	
+
+# 20120908, kkcho, apply reset escape code by double-call 'mipi_pannel_power_on' durnig bootup
+#   Bug : Dump_mode occured durnig power on/off repeat test
+#   Relevant macro or source : msm_fb.c mipi_rohm.c msm_fb.h
+config F_PREVENT_RESET_DURING_BOOTUP
+	bool     
+	default y	
+
+
+# 20120912, shkwak, delete qualcomm's feature - Disable standalone power collapse few ms before VSync
+#   Bug : make lots of logs, Vsync isr can't queue work. We do not use STP, and qualcomm also disable this feature
+#   Relevant macro or source : mdp4_overlay_dsi_video.c mdp4_overlay_lcdc.c msm_fb.h
+config F_SKYDISP_QUALCOMM_SPC_VSYNC
+	bool     
+	default n
+
+# 20120918, p14198
+#   Bug : MIPI doesn't work at low temperature test(EF49K 4/15)
+#   Apply Qualcomm patch(Refer to CASE #00970292, #00978008)
+config F_SKYDISP_QUALCOMM_FIX_MIPI_OPERATION_BECAUSE_MIPI_DOESNOT_WORK_AT_LOW_TEMP
+	bool
+	default y
+
+# Fix backlight related issue
+config F_SKYDISP_QBUG_FIX_BACKLIGHT
+	bool     
+	default y
+
+# Init backlight level
+config F_SKYDISP_INIT_BL_SET
+	bool     
+	default y
+
+# SKY Boot Logo in Kernel Feature
+# KERNEL : used     
+# USER   : used
+config F_SKYDISP_BOOT_LOGO_IN_KERNEL
+	bool     
+	default y
+
+# init ���μ������� �Ѹ��� �� Cursor ���ֱ� 
+# KERNEL : used     
+# USER   : not used
+config F_SKYDISP_NO_CURSOR_IN_BOOT
+	bool     
+	default n
+
+# Sometimes, LK Framebuf area is written by someone before android boot animation.
+# Therefore, remove LK Framebuf from memblock and then LK Framebuf is not accessible by kerenl.
+config F_SKYDISP_RESERVE_LK_FRAMEBUF
+	bool     
+	default y
+
+config PANTECH_ERR_CRASH_LOGGING
+	bool
+	default y
+
+config PANTECH_PMIC_PWRKEY
+	bool
+	default y
+
+# (+) p15060, 2012-05-17
+comment "INPUT_KEYCHORD Configuration"
+config INPUT_KEYCHORD
+	default y
+	bool
+# (-) p15060, 2012-05-17
+
+config PANTECH_PDL_DLOAD
+       bool "pantech pdl dload"
+       default y
+       help 
+        We use the "FEATURE_PANTECH_PDL_DLOAD" feature in System area. There is in "vendor/pantech/build/cust_pantech.h" .
+	
+config UNUSED_GPIO_MPP_SETTING
+       bool "unused gpio and mpp setting"
+       default y
+       help 
+       We use the "CONFIG_UNUSED_GPIO_MPP_SETTING" feature in System area. There is in "kernel\arch\arm\mach-msm\board-8064-gpiomux.c".
+	
+config KSKY_RAWDATA
+       bool "sky_rawdata facility for kernel space"
+       default y
+
+config ANDROID_PANTECH_USB_OTG_INTENT
+  depends on PANTECH_ANDROID_OTG
+  bool "PANTECH USB OTG Intent"
+  default y
+	 help
+     Support Pantech USB OTG Intent
+
+config PANTECH_EXTERNAL_SDCARD
+       bool
+       default y
+
+endmenu
+
+endif
